@@ -1,24 +1,22 @@
 pipeline {
-    agent any
     stages {
-        stage('Test') {
+        stage('Scan') {
             steps {
-                sh 'echo "Fail!"; exit 1'
+                withSonarQubeEnv(installationName: 'sq1') {
+                    sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+                }
             }
         }
     }
     post {
-        always {
-            echo 'This will always run'
-        }
         success {
-            echo 'This will run only if successful'
+            echo 'La comprobación ha sido correcta'
         }
         failure {
-            echo 'This will run only if failed'
+            echo 'La comprobación ha fallado'
         }
         unstable {
-            echo 'This will run only if the run was marked as unstable'
+            echo 'Inestable'
         }
         changed {
             echo 'This will run only if the state of the Pipeline has changed'
