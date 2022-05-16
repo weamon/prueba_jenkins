@@ -1,10 +1,12 @@
 pipeline {
-    agent { docker { image 'maven:3.8.4-openjdk-11-slim' } }
-    stages {
-        stage('build') {
-            steps {
-                sh 'mvn --version'
-            }
+  agent any
+  stages {
+    stage('Scan') {
+      steps {
+        withSonarQubeEnv(installationName: 'sq1') { 
+          sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
         }
+      }
     }
+  }
 }
