@@ -1,4 +1,5 @@
 pipeline {
+  agent {any}
   node ('SCM') {
     git 'https://github.com/weamon/prueba_jenkins.git'
   }
