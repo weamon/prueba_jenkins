@@ -15,5 +15,10 @@ pipeline {
         }
       }
     }
+    stage ("Deploy") {
+      steps {
+        sh "scp "
+      }
+    }
   }
 }
