@@ -17,7 +17,7 @@ pipeline {
     }
     stage ("Copiando los archivos") {
       steps {
-        sh "scp -i ~/ssh-key/claveCli /var/jenkins_home/workspace/prueba/web/* ivan@10.0.2.15:/home/ivan/Escritorio/deploy"
+        sh "scp -i var/sshkey/claveCli /var/jenkins_home/workspace/prueba/web/* ivan@10.0.2.15:/home/ivan/Escritorio/deploy"
       }
     }
   }
